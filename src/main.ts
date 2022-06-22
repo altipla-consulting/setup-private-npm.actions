@@ -18,15 +18,15 @@ async function run(): Promise<void> {
     lines.push(fs.readFileSync(npmrc, 'utf8'))
   }
 
-  if (process.env.FONTAWESOME_TOKEN) {
+  if (core.getInput('fontawesome-token')) {
     core.info('* Configure Font Awesome')
     lines.push(`@fortawesome:registry=https://npm.fontawesome.com/`)
-    lines.push(`//npm.fontawesome.com/:_authToken=${process.env.FONTAWESOME_TOKEN}`)
+    lines.push(`//npm.fontawesome.com/:_authToken=${core.getInput('fontawesome-token')}`)
   }
 
-  if (process.env.GITHUB_TOKEN) {
+  if (core.getInput('github-token')) {
     core.info('* Configure GitHub Packages')
-    lines.push(`//npm.pkg.github.com/:_authToken=${process.env.GITHUB_TOKEN}`)
+    lines.push(`//npm.pkg.github.com/:_authToken=${core.getInput('github-token')}`)
     lines.push(`@altipla-consulting:registry=https://npm.pkg.github.com`)
     lines.push(`always-auth=true`)
   }

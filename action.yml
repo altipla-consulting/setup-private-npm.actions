@@ -1,6 +1,13 @@
 
 name: Setup private NPM
 description: Setup private NPM configuration in CI environments.
+inputs:
+  github-token:
+    description: Content of the GITHUB_TOKEN secret.
+    required: false
+  fontawesome-token:
+    description: Content of the GITHUB_TOKEN secret.
+    required: false
 runs:
   using: node16
   main: dist/index.js
