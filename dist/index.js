@@ -2211,6 +2211,10 @@ async function run() {
         lines.push(`//npm.pkg.github.com/:_authToken=${_actions_core__WEBPACK_IMPORTED_MODULE_3__.getInput('github-token')}`);
         lines.push(`always-auth=true`);
     }
+    if (_actions_core__WEBPACK_IMPORTED_MODULE_3__.getInput('npm-token')) {
+        _actions_core__WEBPACK_IMPORTED_MODULE_3__.info('* Configure NPM');
+        lines.push(`//registry.npmjs.org/:_authToken=${_actions_core__WEBPACK_IMPORTED_MODULE_3__.getInput('npm-token')}`);
+    }
     lines.push('git-tag-version=false');
     _actions_core__WEBPACK_IMPORTED_MODULE_3__.info('* Write .npmrc');
     fs__WEBPACK_IMPORTED_MODULE_0__.writeFileSync(npmrc, lines.join(os__WEBPACK_IMPORTED_MODULE_2__.EOL), 'utf-8');
