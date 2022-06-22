@@ -2215,10 +2215,12 @@ async function run() {
         _actions_core__WEBPACK_IMPORTED_MODULE_3__.info('* Configure NPM');
         lines.push(`//registry.npmjs.org/:_authToken=${_actions_core__WEBPACK_IMPORTED_MODULE_3__.getInput('npm-token')}`);
     }
-    lines.push('git-tag-version=false');
-    _actions_core__WEBPACK_IMPORTED_MODULE_3__.info('* Write .npmrc');
-    fs__WEBPACK_IMPORTED_MODULE_0__.writeFileSync(npmrc, lines.join(os__WEBPACK_IMPORTED_MODULE_2__.EOL), 'utf-8');
-    _actions_core__WEBPACK_IMPORTED_MODULE_3__.exportVariable('NPM_CONFIG_USERCONFIG', npmrc);
+    if (lines.length) {
+        lines.push('git-tag-version=false');
+        _actions_core__WEBPACK_IMPORTED_MODULE_3__.info('* Write .npmrc');
+        fs__WEBPACK_IMPORTED_MODULE_0__.writeFileSync(npmrc, lines.join(os__WEBPACK_IMPORTED_MODULE_2__.EOL), 'utf-8');
+        _actions_core__WEBPACK_IMPORTED_MODULE_3__.exportVariable('NPM_CONFIG_USERCONFIG', npmrc);
+    }
 }
 async function main() {
     try {

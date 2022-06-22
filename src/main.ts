@@ -32,12 +32,14 @@ async function run(): Promise<void> {
     lines.push(`//registry.npmjs.org/:_authToken=${core.getInput('npm-token')}`)
   }
 
-  lines.push('git-tag-version=false')
+  if (lines.length) {
+    lines.push('git-tag-version=false')
   
-  core.info('* Write .npmrc')
-  fs.writeFileSync(npmrc, lines.join(os.EOL), 'utf-8')
-  
-  core.exportVariable('NPM_CONFIG_USERCONFIG', npmrc)
+    core.info('* Write .npmrc')
+    fs.writeFileSync(npmrc, lines.join(os.EOL), 'utf-8')
+
+    core.exportVariable('NPM_CONFIG_USERCONFIG', npmrc)
+  }
 }
 
 async function main(): Promise<void> {
