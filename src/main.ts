@@ -2,6 +2,7 @@
 import * as fs from 'fs'
 import * as path from 'path'
 import * as core from '@actions/core'
+import * as os from 'os'
 
 
 async function run(): Promise<void> {
@@ -31,8 +32,10 @@ async function run(): Promise<void> {
   }
 
   lines.push('git-tag-version=false')
-
+  
   core.info('* Write .npmrc')
+  fs.writeFileSync(npmrc, lines.join(os.EOL))
+  
   core.exportVariable('NPM_CONFIG_USERCONFIG', npmrc)
 }
 
