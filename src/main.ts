@@ -6,11 +6,6 @@ import * as os from 'os'
 
 
 async function run(): Promise<void> {
-  if (!process.env.GITHUB_EVENT_PATH) {
-    core.setFailed('action does not have the $GITHUB_EVENT_PATH env variable')
-    return
-  }
-
   const npmrc = path.resolve(process.env.RUNNER_TEMP || process.cwd(), '.npmrc')
 
   let lines: string[] = []
@@ -34,7 +29,7 @@ async function run(): Promise<void> {
   lines.push('git-tag-version=false')
   
   core.info('* Write .npmrc')
-  fs.writeFileSync(npmrc, lines.join(os.EOL))
+  fs.writeFileSync(npmrc, lines.join(os.EOL), 'utf-8')
   
   core.exportVariable('NPM_CONFIG_USERCONFIG', npmrc)
 }
