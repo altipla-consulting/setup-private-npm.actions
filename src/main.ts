@@ -27,6 +27,11 @@ async function run(): Promise<void> {
     lines.push(`always-auth=true`)
   }
 
+  if (core.getInput('npm-token')) {
+    core.info('* Configure NPM')
+    lines.push(`//registry.npmjs.org/:_authToken=${core.getInput('npm-token')}`)
+  }
+
   lines.push('git-tag-version=false')
   
   core.info('* Write .npmrc')

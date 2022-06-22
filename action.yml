@@ -8,6 +8,9 @@ inputs:
   fontawesome-token:
     description: Content of the GITHUB_TOKEN secret.
     required: false
+  npm-token:
+    description: Content of the NPM_TOKEN secret.
+    required: false
 runs:
   using: node16
   main: dist/index.js
