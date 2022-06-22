@@ -30,6 +30,8 @@ async function run(): Promise<void> {
     lines.push(`always-auth=true`)
   }
 
+  lines.push('git-tag-version=false')
+
   core.info('* Write .npmrc')
   core.exportVariable('NPM_CONFIG_USERCONFIG', npmrc)
 }
