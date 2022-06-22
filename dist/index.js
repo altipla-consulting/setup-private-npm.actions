@@ -2186,41 +2186,42 @@ __nccwpck_require__.r(__webpack_exports__);
 /* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__nccwpck_require__.n(fs__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var path__WEBPACK_IMPORTED_MODULE_1__ = __nccwpck_require__(17);
 /* harmony import */ var path__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__nccwpck_require__.n(path__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_2__ = __nccwpck_require__(186);
-/* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__nccwpck_require__.n(_actions_core__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var os__WEBPACK_IMPORTED_MODULE_2__ = __nccwpck_require__(37);
+/* harmony import */ var os__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__nccwpck_require__.n(os__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_3__ = __nccwpck_require__(186);
+/* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__nccwpck_require__.n(_actions_core__WEBPACK_IMPORTED_MODULE_3__);
+
 
 
 
 async function run() {
-    if (!process.env.GITHUB_EVENT_PATH) {
-        _actions_core__WEBPACK_IMPORTED_MODULE_2__.setFailed('action does not have the $GITHUB_EVENT_PATH env variable');
-        return;
-    }
     const npmrc = path__WEBPACK_IMPORTED_MODULE_1__.resolve(process.env.RUNNER_TEMP || process.cwd(), '.npmrc');
     let lines = [];
     if (fs__WEBPACK_IMPORTED_MODULE_0__.existsSync(npmrc)) {
         lines.push(fs__WEBPACK_IMPORTED_MODULE_0__.readFileSync(npmrc, 'utf8'));
     }
-    if (process.env.FONTAWESOME_TOKEN) {
-        _actions_core__WEBPACK_IMPORTED_MODULE_2__.info('* Configure Font Awesome');
+    if (_actions_core__WEBPACK_IMPORTED_MODULE_3__.getInput('fontawesome-token')) {
+        _actions_core__WEBPACK_IMPORTED_MODULE_3__.info('* Configure Font Awesome');
         lines.push(`@fortawesome:registry=https://npm.fontawesome.com/`);
-        lines.push(`//npm.fontawesome.com/:_authToken=${process.env.FONTAWESOME_TOKEN}`);
+        lines.push(`//npm.fontawesome.com/:_authToken=${_actions_core__WEBPACK_IMPORTED_MODULE_3__.getInput('fontawesome-token')}`);
     }
-    if (process.env.GITHUB_TOKEN) {
-        _actions_core__WEBPACK_IMPORTED_MODULE_2__.info('* Configure GitHub Packages');
-        lines.push(`//npm.pkg.github.com/:_authToken=${process.env.GITHUB_TOKEN}`);
+    if (_actions_core__WEBPACK_IMPORTED_MODULE_3__.getInput('github-token')) {
+        _actions_core__WEBPACK_IMPORTED_MODULE_3__.info('* Configure GitHub Packages');
+        lines.push(`//npm.pkg.github.com/:_authToken=${_actions_core__WEBPACK_IMPORTED_MODULE_3__.getInput('github-token')}`);
         lines.push(`@altipla-consulting:registry=https://npm.pkg.github.com`);
         lines.push(`always-auth=true`);
     }
-    _actions_core__WEBPACK_IMPORTED_MODULE_2__.info('* Write .npmrc');
-    _actions_core__WEBPACK_IMPORTED_MODULE_2__.exportVariable('NPM_CONFIG_USERCONFIG', npmrc);
+    lines.push('git-tag-version=false');
+    _actions_core__WEBPACK_IMPORTED_MODULE_3__.info('* Write .npmrc');
+    fs__WEBPACK_IMPORTED_MODULE_0__.writeFileSync(npmrc, lines.join(os__WEBPACK_IMPORTED_MODULE_2__.EOL), 'utf-8');
+    _actions_core__WEBPACK_IMPORTED_MODULE_3__.exportVariable('NPM_CONFIG_USERCONFIG', npmrc);
 }
 async function main() {
     try {
         await run();
     }
     catch (err) {
-        _actions_core__WEBPACK_IMPORTED_MODULE_2__.setFailed(`Action failed with error: ${err}`);
+        _actions_core__WEBPACK_IMPORTED_MODULE_3__.setFailed(`Action failed with error: ${err}`);
     }
 }
 main();

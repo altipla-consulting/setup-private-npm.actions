@@ -30,7 +30,6 @@ async function run(): Promise<void> {
   lines.push('git-tag-version=false')
   
   core.info('* Write .npmrc')
-  core.info(JSON.stringify(lines))
   fs.writeFileSync(npmrc, lines.join(os.EOL), 'utf-8')
   
   core.exportVariable('NPM_CONFIG_USERCONFIG', npmrc)
