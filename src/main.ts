@@ -22,8 +22,8 @@ async function run(): Promise<void> {
 
   if (core.getInput('github-token')) {
     core.info('* Configure GitHub Packages')
-    lines.push(`//npm.pkg.github.com/:_authToken=${core.getInput('github-token')}`)
     lines.push(`@altipla-consulting:registry=https://npm.pkg.github.com`)
+    lines.push(`//npm.pkg.github.com/:_authToken=${core.getInput('github-token')}`)
     lines.push(`always-auth=true`)
   }
 
