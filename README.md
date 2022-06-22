@@ -1,5 +1,5 @@
 
-# setup-private-npm
+# setup-private-npm.actions
 
 Setup private NPM configuration in CI environments.
 
@@ -29,7 +29,7 @@ jobs:
         node-version: '16.x'
 
     - name: Configure private packages
-      uses: altipla-consulting/setup-private-npm@main
+      uses: altipla-consulting/setup-private-npm.actions@main
       with:
         fontawesome-token: ${{ secrets.FONTAWESOME_TOKEN }}
         github-token: ${{ secrets.GITHUB_TOKEN }}

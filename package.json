@@ -1,5 +1,5 @@
 {
-  "name": "setup-private-npm",
+  "name": "setup-private-npm.actions",
   "version": "0.0.0",
   "description": "Setup private NPM configuration in CI environments.",
   "main": "dist/index.js",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/altipla-consulting/setup-private-npm.git"
+    "url": "git+https://github.com/altipla-consulting/setup-private-npm.actions.git"
   },
   "author": "Altipla Consulting",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/altipla-consulting/setup-private-npm/issues"
+    "url": "https://github.com/altipla-consulting/setup-private-npm.actions/issues"
   },
-  "homepage": "https://github.com/altipla-consulting/setup-private-npm#readme",
+  "homepage": "https://github.com/altipla-consulting/setup-private-npm.actions#readme",
   "devDependencies": {
     "@altipla/eslint-config-ts": "^0.4.0",
     "@types/node": "^18.0.0",
