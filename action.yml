@@ -1,17 +1,6 @@
 
-name: Go release v1.14
-description: Release Go binaries built with v1.14.
-inputs:
-  source:
-    description: Source of the command to build.
-    required: true
-    default: .
-  name:
-    description: Name of the command to build.
-    required: true
-  token:
-    description: GITHUB_ACTIONS token.
-    required: true
+name: Setup private NPM
+description: Setup private NPM configuration in CI environments.
 runs:
-  using: node12
+  using: node16
   main: dist/index.js
