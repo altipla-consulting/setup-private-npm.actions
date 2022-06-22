@@ -2207,8 +2207,8 @@ async function run() {
     }
     if (_actions_core__WEBPACK_IMPORTED_MODULE_3__.getInput('github-token')) {
         _actions_core__WEBPACK_IMPORTED_MODULE_3__.info('* Configure GitHub Packages');
-        lines.push(`//npm.pkg.github.com/:_authToken=${_actions_core__WEBPACK_IMPORTED_MODULE_3__.getInput('github-token')}`);
         lines.push(`@altipla-consulting:registry=https://npm.pkg.github.com`);
+        lines.push(`//npm.pkg.github.com/:_authToken=${_actions_core__WEBPACK_IMPORTED_MODULE_3__.getInput('github-token')}`);
         lines.push(`always-auth=true`);
     }
     lines.push('git-tag-version=false');
