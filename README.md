@@ -35,6 +35,7 @@ jobs:
         fontawesome-token: ${{ secrets.FONTAWESOME_TOKEN }}
         github-token: ${{ secrets.GITHUB_TOKEN }}
         npm-token: ${{ secrets.NPM_TOKEN }}
+        buf-token: ${{ secrets.BUF_TOKEN }}
 
     - name: Cache node modules
       id: cache-npm

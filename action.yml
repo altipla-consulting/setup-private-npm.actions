@@ -11,6 +11,9 @@ inputs:
   npm-token:
     description: Content of the NPM_TOKEN secret.
     required: false
+  buf-token:
+    description: Content of the BUF_TOKEN secret.
+    required: false
 runs:
   using: node16
   main: dist/index.js

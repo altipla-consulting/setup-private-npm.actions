@@ -2211,6 +2211,11 @@ async function run() {
         lines.push(`//npm.pkg.github.com/:_authToken=${_actions_core__WEBPACK_IMPORTED_MODULE_3__.getInput('github-token')}`);
         lines.push(`always-auth=true`);
     }
+    if (_actions_core__WEBPACK_IMPORTED_MODULE_3__.getInput('buf-token')) {
+        _actions_core__WEBPACK_IMPORTED_MODULE_3__.info('* Configure Buf');
+        lines.push(`//buf.build/:_authToken=${_actions_core__WEBPACK_IMPORTED_MODULE_3__.getInput('buf-token')}`);
+        lines.push(`always-auth=true`);
+    }
     if (_actions_core__WEBPACK_IMPORTED_MODULE_3__.getInput('npm-token')) {
         _actions_core__WEBPACK_IMPORTED_MODULE_3__.info('* Configure NPM');
         lines.push(`//registry.npmjs.org/:_authToken=${_actions_core__WEBPACK_IMPORTED_MODULE_3__.getInput('npm-token')}`);
